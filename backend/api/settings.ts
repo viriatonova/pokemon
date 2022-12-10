@@ -1,18 +1,19 @@
-import * as dotenv from 'dotenv'
+// import * as dotenv from 'dotenv'
 import cors from 'cors'
-import path from 'path';
+import 'reflect-metadata'
+import { DataSource } from "typeorm"
+import {Pokemon} from '../pokemon/Entity'
 
-dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 /**
  * Environment Variables
  */
- export const SERVER = process.env.SERVER_HOST;
- export const PORT = process.env.SERVER_PORT;
- export const DB_USER = process.env.POSTGRES_USER
- export const DB_PASSWORD = process.env.POSTGRES_PASSWORD
+ export const SERVER = process.env.SERVER;
+ export const PORT = process.env.PORT;
+ export const DB_USER = process.env.DB_USER
+ export const DB_PASSWORD = process.env.DB_PASSWORD
  export const DB_HOST = process.env.DB_HOST
- export const DB = process.env.POSTGRES_DB
+ export const DB = process.env.DB
  export const STATIC_DIR = '/public/image/'
 
  /**
@@ -30,3 +31,20 @@ const whitelist = [
 export const corsOptions: cors.CorsOptions = {
     origin: whitelist
 }
+
+/**
+ * DB Connection
+ */
+export const AppDataSource = new DataSource({
+    type: "postgres",
+    host: DB_HOST,
+    port: 5432,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB,
+    synchronize: true,
+    logging: true,
+    entities: [Pokemon],
+    subscribers: [],
+    migrations: [],
+})

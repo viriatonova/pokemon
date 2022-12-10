@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+
+    db:
+        image: postgres:15-alpine
+        container_name: db_certi
+        environment:
+            - "POSTGRES_USER=${POSTGRES_USER:-postgres}"
+            - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secret}"
+            - "POSTGRES_DB=${POSTGRES_DB:-certi}"
+        volumes:
+            - "./db-data:/var/lib/postgresql/data"
+        ports:
+            - "5432:5432"
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "pg_isready",
+                    "--username=${POSTGRES_USER:-postgres}",
+                    "-d",
+                    "${POSTGRES_DB:-certi}"
+                ]
+
+    api:
+        image: api_certi
+        container_name: api_certi
+        build: ./backend
+        command: bash -c "npm install && npm run build && npm start"
+        environment:
+            - "SERVER=${SERVER_HOST:-127.0.0.1}"
+            - "PORT=${SERVER_PORT:-9100}"
+            - "DB_USER=${POSTGRES_USER:-postgres}"
+            - "DB_PASSWORD=${POSTGRES_PASSWORD:-secret}"
+            - "DB_HOST=db_certi"
+            - "DB=${POSTGRES_DB:-certi}"
+        volumes:
+            - ./backend:/code
+        ports:
+            - "${SERVER_PORT:-9100}:${SERVER_PORT:-9100}"
+        healthcheck: 
+            test: curl --fail http://${SERVER_HOST:-127.0.0.1}:${SERVER_PORT:-9100}/api/v1 || exit 1
+        depends_on:
+            db:
+                condition: service_healthy
+
+    front:
+        image: front_certi
+        container_name: front_certi
+        build: ./frontend
+        command: bash -c "npm install && npm install -g @angular/cli@8.1.2 && ng serve --open --host 0.0.0.0 --port 4200 --disable-host-check"
+        ports:
+            - "4200:4200"
+        volumes:
+            - ./frontend:/code/
+        depends_on:
+            api:
+                condition: service_healthy
+     
+volumes:
+    db-data:
+

@@ -5,9 +5,10 @@ import path from 'path';
 import { ROUTER } from './api/router';
 import { routeDefaultMiddleware } from './api/middlewares';
 import { 
-    SERVER, PORT, corsOptions,
+    SERVER, PORT, corsOptions, AppDataSource,
     STATIC_DIR
 } from './api/settings'
+
 
 const APP = express();
 
@@ -17,6 +18,12 @@ APP.use('/api/v1', ROUTER)
 APP.use('/static', express.static(path.join(__dirname, STATIC_DIR)))
 
 APP.all('*', routeDefaultMiddleware);
+
+AppDataSource.initialize()
+    .then(() => {
+        console.log('Database has been intialized')
+    })
+    .catch((error) => console.log(error))
 
 
 APP.listen(PORT, () => {
