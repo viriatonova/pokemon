@@ -1,18 +1,18 @@
 <section class="w-full h-full flex flex-col justify-center items-center">
-    <form class="w-full xl:w-2/3">
+    <form class="w-full xl:w-2/3" [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
         <fieldset class="input-text">
-            <input class="w-full" type="text" placeholder="pikachu" name="name" />
+            <input class="w-full" type="text" placeholder="pikachu" name="name" formControlName="name" />
             <button class="btn-primary" type="submit">
                 capture
             </button>
         </fieldset>
     </form>
     <article class="pokemon-list">
-        <ul>
+        <ul *ngFor="let pokemon of pokemonList">
             <li class="pokemon-item">
-                <img src="" alt="pokemon-image">
-                <p>ID: <span class="pokemon-data">1</span></p>
-                <p>NAME: <span class="pokemon-data">PIKACHU</span></p>
+                <img [src]="pokemon?.data.photo_uq" alt="pokemon-image">
+                <p>ID: <span class="pokemon-data">{{pokemon?.data.id_pk}}</span></p>
+                <p>NAME: <span class="pokemon-data">{{pokemon?.data.name_uq}}</span></p>
             </li>
         </ul>
     </article>
