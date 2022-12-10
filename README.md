@@ -27,6 +27,9 @@
 
 - If you plane to change the variable `DB_HOST` you will need to change `db_certi` docker container name to.
 
+- On the frontend environment file: `frontend > app > environments > environment.ts` 
+    - setup the APIURL as configured in `.env`: `http://<SERVER_HOST>:<SERVER_PORT>/api/v1` 
+
 ## Usage
 
 ## Tests
