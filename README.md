@@ -12,7 +12,7 @@
 
 - [Node](https://nodejs.org/en/)
 - [Docker](https://docs.docker.com/reference/)
-- [docker-compose](https://docs.docker.com/compose/)
+- [Docker-compose](https://docs.docker.com/compose/)
 
 ## Setup
 

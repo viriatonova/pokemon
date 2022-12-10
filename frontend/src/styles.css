@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply w-full h-full bg-slate-700
+    }
+    h1 {
+        @apply w-full h-auto mb-4
+        text-center text-2xl text-red-300 font-bold
+    }
+}
+
+@layer components {
+
+}
