@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface Pokemon {
     id_px: number
@@ -29,20 +29,23 @@ export class PokemonFormComponent implements OnInit {
 
     ngOnInit() {
         this.pokemonForm = this.formBuilder.group({
-            name: [null]
+            name: [null, Validators.required]
         });
     }
 
     onSubmit() {
         this.http.get(`${this.apiUrl}/pokemon/${this.pokemonForm.value.name}`)
         .subscribe((item: PokemonObj) => {
-            if(!item.data.name_uq) return "Sem Pokemon"
-            const PokemonNameList = this.pokemonList
-                .map(item => item.data.name_uq)
-                .filter(name => name === item.data.name_uq)
-            const checkExistentPokemon = PokemonNameList.indexOf(item.data.name_uq)
-            if (checkExistentPokemon) return this.pokemonList.push(item)
-            return "Sem Pokemon"
+            if (item) {
+                const PokemonNameList = this.pokemonList
+                    .map(item => item.data.name_uq)
+                    .filter(name => name === item.data.name_uq)
+                const checkExistentPokemon = PokemonNameList.indexOf(item.data.name_uq)
+                if (checkExistentPokemon) {
+                    this.pokemonList.push(item)
+                    return this.pokemonForm.reset()
+                }
+            }
         })
     }
 }

@@ -6,6 +6,12 @@
                 capture
             </button>
         </fieldset>
+        <div *ngIf="pokemonForm.controls['name'].invalid && (pokemonForm.controls['name'].dirty || pokemonForm.controls['name'].touched)"
+            class="error">
+            <div *ngIf="pokemonForm.controls['name'].errors['required']">
+                {{"Please enter Pokemon name"}}
+            </div>
+        </div>
     </form>
     <article class="pokemon-list">
         <ul *ngFor="let pokemon of pokemonList">

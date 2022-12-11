@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Pokemon API",
+        "description": "Express restAPI typescript to provide pokemons",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:9100/api/v1/"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "healthchecker",
+                "responses": {
+                    "200": {
+                        "description": "healthchecker"
+                    }
+                }
+            }
+        },
+        "/pokemon": {
+            "post": {
+                "summary": "Create a list of pokemons objects",
+                "responses": {
+                    "200": {
+                        "description": "200 204 responses"
+                    },
+                    "204": {
+                        "description": "200 204 responses"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Get all pokemons objects",
+                "responses": {
+                    "200": {
+                        "description": "200 204 responses"
+                    },
+                    "204": {
+                        "description": "200 204 responses"
+                    }
+                }
+            }
+        },
+        "/pokemon/{name}": {
+            "get": {
+                "summary": "Get all pokemons objects",
+                "responses": {
+                    "200": {
+                        "description": "200 204 responses"
+                    },
+                    "204": {
+                        "description": "200 204 responses"
+                    }
+                }
+            }
+        }
+    }
+}
