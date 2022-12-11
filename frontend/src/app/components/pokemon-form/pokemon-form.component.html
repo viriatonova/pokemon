@@ -1,5 +1,6 @@
 <section class="w-full h-full flex flex-col justify-center items-center">
-    <form class="w-full xl:w-2/3" [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
+    <form class="w-full xl:w-2/3 flex flex-col justify-center items-center" [formGroup]="pokemonForm"
+        (ngSubmit)="onSubmit()">
         <fieldset class="input-text">
             <input class="w-full" type="text" placeholder="pikachu" name="name" formControlName="name" />
             <button class="btn-primary" type="submit">
@@ -10,6 +11,9 @@
             class="error">
             <div *ngIf="pokemonForm.controls['name'].errors['required']">
                 {{"Please enter Pokemon name"}}
+            </div>
+            <div *ngIf="pokemonForm.controls['name'].hasError('noPokemon')">
+                Pokemon don't exist in database
             </div>
         </div>
     </form>

@@ -22,7 +22,7 @@ export const getAllPokemon = async (req: Request, res: Response) => {
  */
 export const getPokemon = async (req: Request, res: Response) => {
     const db_pokemon = await findPokemonByName(req.params.name)
-    if (!db_pokemon) return res.status(204)
+    if (db_pokemon === null) return res.status(404).json({"message":"not content"})
     return res.status(200).json({data: db_pokemon})
 }
 

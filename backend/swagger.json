@@ -26,7 +26,16 @@
                 "summary": "Create a list of pokemons objects",
                 "responses": {
                     "200": {
-                        "description": "200 204 responses"
+                        "description": "200 204 responses",
+                        "schema": {
+                            "type": "array",
+                            "properties": {
+                                "name": {
+                                    "type":"array",
+                                    "example": "pikachu"
+                                }
+                            }
+                        }
                     },
                     "204": {
                         "description": "200 204 responses"
