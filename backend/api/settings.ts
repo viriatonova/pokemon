@@ -25,7 +25,9 @@ const whitelist = [
     'http://127.0.0.1:3000', 
     'http://0.0.0.0:4200',
     'http://localhost:4200',
-    'http://127.0.0.1:4200'
+    'http://127.0.0.1:4200',
+    'http://localhost:9100',
+    'http://127.0.0.1:9100'
 ];
 
 export const corsOptions: cors.CorsOptions = {

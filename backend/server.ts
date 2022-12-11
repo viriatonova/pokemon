@@ -17,7 +17,7 @@ APP.use(cors<Request>(corsOptions))
 APP.use(bodyParser.json())
 APP.use('/api/v1', ROUTER)
 APP.use('/static', express.static(path.join(__dirname, STATIC_DIR)))
-APP.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+APP.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 APP.all('*', routeDefaultMiddleware);
 
 AppDataSource.initialize()

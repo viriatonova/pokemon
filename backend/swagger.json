@@ -5,11 +5,8 @@
         "description": "Express restAPI typescript to provide pokemons",
         "version": "1.0"
     },
-    "servers": [
-        {
-            "url": "http://127.0.0.1:9100/api/v1/"
-        }
-    ],
+    "servers": [{"url": "http://127.0.0.1:9100/api/v1"}],
+    "schemes": ["http"],
     "paths": {
         "/": {
             "get": {
@@ -24,45 +21,94 @@
         "/pokemon": {
             "post": {
                 "summary": "Create a list of pokemons objects",
+                "produces": [
+                    "application/json",
+                    "text/html"
+                ],
+                "parameters": [
+                    {
+                        "list": [
+                            "pikachu",
+                            "charmander",
+                            "eevee"
+                        ]
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "200 204 responses",
-                        "schema": {
-                            "type": "array",
-                            "properties": {
-                                "name": {
-                                    "type":"array",
-                                    "example": "pikachu"
+                        "description": "Return success create message",
+                        "content": {
+                            "application/json": {
+                                "type": "object",
+                                "items": {
+                                    "type": "string"
                                 }
+                            },
+                            "example": {
+                                "message": "success"
                             }
                         }
-                    },
-                    "204": {
-                        "description": "200 204 responses"
                     }
+                },
+                "409": {
+                    "description": "Return error message item already existed"
                 }
             },
             "get": {
                 "summary": "Get all pokemons objects",
                 "responses": {
                     "200": {
-                        "description": "200 204 responses"
+                        "description": "Return database items in response object data"
                     },
                     "204": {
-                        "description": "200 204 responses"
+                        "description": "Don't exist items in database"
                     }
                 }
             }
         },
         "/pokemon/{name}": {
             "get": {
-                "summary": "Get all pokemons objects",
+                "summary": "Get specific pokemons objects",
+                "produces": [
+                    "application/json",
+                    "text/html"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "name"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "200 204 responses"
+                        "description": "Return database object item",
+                        "content": {
+                            "application/json": {
+                                "type": "object",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id_pk": {
+                                            "type": "number"
+                                        },
+                                        "name_uq": {
+                                            "type": "string"
+                                        },
+                                        "photo_uq": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id_pk": 1,
+                                    "name_uq": "pikachu",
+                                    "photo_uq": "http://127.0.0.1:9100/static/pikachu.png"
+                                }
+                            }
+                        }
                     },
-                    "204": {
-                        "description": "200 204 responses"
+                    "409": {
+                        "description": "Return error message item already existed"
                     }
                 }
             }
