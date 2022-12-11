@@ -1,8 +1,8 @@
 <section class="w-full h-full flex flex-col justify-center items-center">
     <form class="w-full xl:w-2/3 flex flex-col justify-center items-center" [formGroup]="pokemonForm"
         (ngSubmit)="onSubmit()">
-        <fieldset class="input-text">
-            <input class="w-full" type="text" placeholder="pikachu" name="name" formControlName="name" />
+        <fieldset class="field">
+            <input class="input-text w-full" type="text" placeholder="pikachu" name="name" formControlName="name" />
             <button class="btn-primary" type="submit">
                 capture
             </button>
