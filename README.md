@@ -43,15 +43,30 @@
 
             dotenv.config({path: path.join(__dirname, '../../.env') });
             ```
+
+    - On tests:
+        - change all the urls in the following files:
+            - tests > cypress > e2e > [frontend.js, backend.js]
+
 <br/>
 
 ## Usage
+
+**Api Doc endpoint** (_default server configs_): 
+- `http://localhost:9100/api/v1/docs`
+
+**Frontend Url**: 
+- `http://localhost:4200`
+
+<br/>
 
 The database application only suport the following list of pokemons images:
 
 - psyduck | pikachu | charmander | cyndaquil | dragonite | eevee | emboar | fennekin | grotle | grpwlithe | ivysaur | jolten
 
 If you do a `post request` to create a pokemon out side of the list the image field in frontend will broke 
+
+
 
 <br/>
 
