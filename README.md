@@ -60,11 +60,13 @@
 
 <br/>
 
-The database application only suport the following list of pokemons images:
+The application already a default databse implemented
+
+The application only suports the following list of pokemons images:
 
 - psyduck | pikachu | charmander | cyndaquil | dragonite | eevee | emboar | fennekin | grotle | grpwlithe | ivysaur | jolten
 
-If you do a `post request` to create a pokemon out side of the list the image field in frontend will broke 
+If you do a `post request` to create pokemons out side of the list the image field in frontend will broke 
 
 
 
