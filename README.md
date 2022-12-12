@@ -60,7 +60,7 @@
 
 <br/>
 
-The application already a default databse implemented
+The application already have a default databse implemented
 
 The application only suports the following list of pokemons images:
 
