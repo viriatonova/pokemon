@@ -1,4 +1,11 @@
 {
+  "name": "automation_pokemon",
+  "version": "1.0.0",
+  "description": "Automation to Pokemon App",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --spec 'cypress/e2e/*.cy.js' --browser chrome"
+  },
   "dependencies": {
     "cypress": "^12.0.2"
   }
